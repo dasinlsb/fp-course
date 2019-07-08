@@ -1,7 +1,7 @@
-- [ ] Course.ExactlyOne
-- [ ] Course.Validation
-- [ ] Course.Optional.
-- [ ] Course.List
+- [x] Course.ExactlyOne
+- [x] Course.Validation
+- [x] Course.Optional.
+- [x] Course.List
 - [ ] Course.Functor
 - [ ] Course.Applicative$$
 - [ ] Course.Monad
