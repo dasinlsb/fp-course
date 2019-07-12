@@ -2,8 +2,8 @@
 - [x] Course.Validation
 - [x] Course.Optional.
 - [x] Course.List
-- [ ] Course.Functor
-- [ ] Course.Applicative$$
+- [x] Course.Functor
+- [x] Course.Applicative
 - [ ] Course.Monad
 - [ ] Course.FileIO
 - [ ] Course.State
