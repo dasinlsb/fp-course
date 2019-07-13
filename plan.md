@@ -4,8 +4,8 @@
 - [x] Course.List
 - [x] Course.Functor
 - [x] Course.Applicative
-- [ ] Course.Monad
-- [ ] Course.FileIO
+- [x] Course.Monad
+- [x] Course.FileIO
 - [ ] Course.State
 - [ ] Course.StateT
 - [ ] Course.Extend
