@@ -6,8 +6,8 @@
 - [x] Course.Applicative
 - [x] Course.Monad
 - [x] Course.FileIO
-- [ ] Course.State
-- [ ] Course.StateT
+- [x] Course.State
+- [x] Course.StateT
 - [ ] Course.Extend
 - [ ] Course.Comonad
 - [ ] Course.Compose
