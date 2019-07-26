@@ -8,11 +8,11 @@
 - [x] Course.FileIO
 - [x] Course.State
 - [x] Course.StateT
-- [ ] Course.Extend
-- [ ] Course.Comonad
-- [ ] Course.Compose
-- [ ] Course.Traversable
-- [ ] Course.ListZipper
+- [x] Course.Extend
+- [x] Course.Comonad
+- [x] Course.Compose
+- [x] Course.Traversable
+- [x] Course.ListZipper
 - [ ] Course.Person
 - [ ] Course.Parser
 - [ ] Course.MoreParser
