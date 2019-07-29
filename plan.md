@@ -13,10 +13,10 @@
 - [x] Course.Compose
 - [x] Course.Traversable
 - [x] Course.ListZipper
-- [ ] Course.Person
-- [ ] Course.Parser
-- [ ] Course.MoreParser
-- [ ] Course.JsonParser
+- [x] Course.Person
+- [x] Course.Parser
+- [x] Course.MoreParser
+- [x] Course.JsonParser
 - [ ] Course.Interactive
 - [ ] Course.Anagrams
 - [ ] Course.FastAnagrams
