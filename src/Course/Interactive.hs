@@ -82,8 +82,9 @@ data Op =
 -- /Tip:/ @putStrLn :: String -> IO ()@ -- Prints a string and then a new line to standard output.
 convertInteractive ::
   IO ()
-convertInteractive =
-  error "todo: Course.Interactive#convertInteractive"
+convertInteractive = do 
+  s <- getLine
+  putStrLn $ map toUpper s  
 
 -- |
 --
@@ -110,8 +111,11 @@ convertInteractive =
 -- /Tip:/ @putStrLn :: String -> IO ()@ -- Prints a string and then a new line to standard output.
 reverseInteractive ::
   IO ()
-reverseInteractive =
-  error "todo: Course.Interactive#reverseInteractive"
+reverseInteractive = do
+  from <- getLine
+  to <- getLine
+  text <- readFile from
+  writeFile to (reverse text)
 
 -- |
 --
@@ -136,8 +140,13 @@ reverseInteractive =
 -- /Tip:/ @putStrLn :: String -> IO ()@ -- Prints a string and then a new line to standard output.
 encodeInteractive ::
   IO ()
-encodeInteractive =
-  error "todo: Course.Interactive#encodeInteractive"
+encodeInteractive = do
+  s <- getLine
+  putStrLn $ flatMap (\c -> case c of
+                              ' '  -> "%20"
+                              '\t' -> "%09"
+                              '"'  -> "%22"
+                              _    -> c :. Nil) s
 
 interactive ::
   IO ()

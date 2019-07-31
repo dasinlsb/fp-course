@@ -14,8 +14,12 @@ fastAnagrams ::
   Chars
   -> FilePath
   -> IO (List Chars)
-fastAnagrams =
-  error "todo: Course.FastAnagrams#fastAnagrams"
+fastAnagrams ana file =
+  (filter ((==) (qsort ana) . qsort) . lines) <$> readFile file
+    where qsort Nil = Nil
+          qsort (x :. xs) = qsort l' ++ (x :. Nil) ++ qsort r'
+            where l' = filter (< x) xs
+                  r' = filter (>= x) xs
 
 newtype NoCaseString =
   NoCaseString {

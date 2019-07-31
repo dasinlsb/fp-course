@@ -17,7 +17,7 @@
 - [x] Course.Parser
 - [x] Course.MoreParser
 - [x] Course.JsonParser
-- [ ] Course.Interactive
-- [ ] Course.Anagrams
-- [ ] Course.FastAnagrams
-- [ ] Course.Cheque
+- [x] Course.Interactive
+- [x] Course.Anagrams
+- [x] Course.FastAnagrams
+- [x] Course.Cheque
