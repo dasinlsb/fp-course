@@ -187,7 +187,7 @@ data Digit =
   | Seven
   | Eight
   | Nine
-  deriving (Eq, Ord)
+  deriving (Show, Eq, Ord)
 
 showDigit ::
   Digit
@@ -218,7 +218,7 @@ data Digit3 =
   D1 Digit
   | D2 Digit Digit
   | D3 Digit Digit Digit
-  deriving Eq
+  deriving (Show, Eq)
 
 -- Possibly convert a character to a digit.
 fromChar ::
@@ -323,5 +323,91 @@ fromChar _ =
 dollars ::
   Chars
   -> Chars
-dollars =
-  error "todo: Course.Cheque#dollars"
+dollars s =
+  let (l, r) = (takeWhile ('.' /=) s, 
+                case dropWhile ('.' /=) s of
+                  Nil -> ('0' :. Nil)
+                  (_ :. xs) -> xs)
+  in addSuffixS (listh "dollar") (numWords2EnglishWords $ filterDigit l) ++ 
+     listh " and " ++ 
+     addSuffixS (listh "cent") (numWords2EnglishWords $ addTo2Zeroes $ filterDigit r)
+    where addSuffixS t n = let t' = if n /= "one"
+                                      then t ++ ('s' :. Nil)
+                                      else t 
+                          in n ++ (' ' :. t')
+          addTo2Zeroes xs = let n' = length xs 
+                            in if n' < 2 then xs ++ replicate (2 - n') Zero
+                               else if n' > 2 then take 2 xs
+                               else xs
+          filterDigit = flatMap (\a' -> case fromChar a' of
+                                          Empty -> Nil
+                                          Full x -> (x :. Nil))
+
+numWords2EnglishWords :: 
+  List Digit
+  -> Chars
+numWords2EnglishWords = 
+  ensureZero .
+  trimLast .
+  flatten .
+  reverse . 
+  zipWith (\u' n' -> if n' == listh "zero"
+                      then Nil 
+                      else n' ++ (if u' == Nil then Nil else ' ' :. u') ++ (' ' :. Nil)) illion . 
+  dealAllZeros .
+  map digit3ToEnglishWord .
+  splitBy3 . reverse
+  where ensureZero s = if s == Nil then (listh "zero") else s
+        trimLast s = let n = length s 
+                        in if n >= 1
+                            then take (n - 1) s else s 
+        dealAllZeros s = if all (listh "zero" ==) s 
+                            then (listh "zero" :. Nil)
+                            else s
+
+splitBy3 :: 
+  List Digit
+  -> List Digit3
+splitBy3 s =
+  case s of 
+    (x1 :. x2 :. x3 :. xs) -> (D3 x3 x2 x1 :. splitBy3 xs)
+    (x1 :. x2 :. xs) -> (D2 x2 x1 :. splitBy3 xs)
+    (x1 :. xs) -> (D1 x1 :. splitBy3 xs)
+    _ -> Nil
+
+digit3ToEnglishWord ::
+  Digit3 
+  -> Chars
+digit3ToEnglishWord (D1 n1) = showDigit n1
+digit3ToEnglishWord (D2 n1 n2) = 
+  case n1 of 
+    Zero  -> digit3ToEnglishWord (D1 n2)
+    One   -> case n2 of
+              Zero  -> "ten"
+              One   -> "eleven"
+              Two   -> "twelve"
+              Three -> "thirteen"
+              Four  -> "fourteen"
+              Five  -> "fifteen"
+              Six   -> "sixteen"
+              Seven -> "seventeen"
+              Eight -> "eighteen"
+              Nine  -> "nineteen"
+    Two   -> addUnits "twenty"
+    Three -> addUnits "thirty"
+    Four  -> addUnits "forty"
+    Five  -> addUnits "fifty"
+    Six   -> addUnits "sixty"
+    Seven -> addUnits "seventy"
+    Eight -> addUnits "eighty"
+    Nine  -> addUnits "ninety"
+  where addUnits s = if n2 == Zero 
+                      then s 
+                      else s ++ ('-' :. showDigit n2)
+digit3ToEnglishWord (D3 n1 n2 n3) =
+  case n1 of 
+    Zero -> digit3ToEnglishWord (D2 n2 n3)
+    _ -> if (n2, n3) == (Zero, Zero)
+          then showDigit n1 ++ " hundred"
+          else showDigit n1 ++ " hundred and " ++ digit3ToEnglishWord (D2 n2 n3)
+  

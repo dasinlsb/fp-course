@@ -1,23 +1,23 @@
-- [ ] Course.ExactlyOne
-- [ ] Course.Validation
-- [ ] Course.Optional.
-- [ ] Course.List
-- [ ] Course.Functor
-- [ ] Course.Applicative$$
-- [ ] Course.Monad
-- [ ] Course.FileIO
-- [ ] Course.State
-- [ ] Course.StateT
-- [ ] Course.Extend
-- [ ] Course.Comonad
-- [ ] Course.Compose
-- [ ] Course.Traversable
-- [ ] Course.ListZipper
-- [ ] Course.Person
-- [ ] Course.Parser
-- [ ] Course.MoreParser
-- [ ] Course.JsonParser
-- [ ] Course.Interactive
-- [ ] Course.Anagrams
-- [ ] Course.FastAnagrams
-- [ ] Course.Cheque
+- [x] Course.ExactlyOne
+- [x] Course.Validation
+- [x] Course.Optional.
+- [x] Course.List
+- [x] Course.Functor
+- [x] Course.Applicative
+- [x] Course.Monad
+- [x] Course.FileIO
+- [x] Course.State
+- [x] Course.StateT
+- [x] Course.Extend
+- [x] Course.Comonad
+- [x] Course.Compose
+- [x] Course.Traversable
+- [x] Course.ListZipper
+- [x] Course.Person
+- [x] Course.Parser
+- [x] Course.MoreParser
+- [x] Course.JsonParser
+- [x] Course.Interactive
+- [x] Course.Anagrams
+- [x] Course.FastAnagrams
+- [x] Course.Cheque
